@@ -49,12 +49,12 @@ const apiDetails = id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
         .then(res => res.json())
-        .then(data => displaySingleApiData (data))
+        .then(data => displaySingleApiData(data))
 }
- const displaySingleApiData = (data) =>{
-   const modalBodyDetails =document.getElementById('modal-body')
-   const modalLeftDetails =document.getElementById('modal-left-details')
-   modalLeftDetails.innerHTML =`
+const displaySingleApiData = (data) => {
+    const modalBodyDetails = document.getElementById('modal-body')
+    const modalLeftDetails = document.getElementById('modal-left-details')
+    modalLeftDetails.innerHTML = `
         <p>${data.data.description}</p>
         <div class="row column-gap-3 px-3">
            <div class ="col bg-light-subtle">
@@ -67,32 +67,40 @@ const apiDetails = id => {
            <p>${data.data.pricing[2].price} <br>${data.data.pricing[2].plan}</p>
            </div>
         </div>
-        <div>
-             <div>
+        <div class="row">
+             <div class ="col">
                  <h3>Features</h3>
-                 
-                  <p>2.${data.data.features[1].feature_name}</p>
-                  <p>3.${data.data.features[2].feature_name}</p>
-                  <p>1.${data.data.features[3].feature_name}</p>
-                  
+                 <ul type="radio">
+                  <li>${data.data.features[1].feature_name}</li>
+                  <li>${data.data.features[2].feature_name}</li>
+                  <li>${data.data.features[3].feature_name}</li>
+                  </ul>
              </div>
-             <div>
+             <div class="col">
+             <h3>Integrations</h3>
+                 
+            <ul type="radio">
+              <li>${data.data.integrations[0]}</li>
+              <li>${data.data.integrations[1]}</li>
+              <li>${data.data.integrations[2]}</li>
+            </ul>
              
              </div>
         </div>
    
    `
-   const modalRightDetails =document.getElementById('modal-right-details')
-   modalRightDetails.innerHTML =`
+    const modalRightDetails = document.getElementById('modal-right-details')
+    modalRightDetails.innerHTML = `
    <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+           <img src="${data.data.image_link[0]}" class="card-img-top image-fluid" alt="...">
+      <div class="card-body">
+        <h4>${data.data.input_output_examples[0].input}</h4>
+        <p class="card-text">I'm doing well, thank you for asking. How can I assist you today?</p>
+      </div>
   </div>
-</div>
    
    `
- }
+}
 
 loadApiData()
 
