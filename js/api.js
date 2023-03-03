@@ -56,7 +56,7 @@ const displaySingleApiData = (data) => {
     const modalLeftDetails = document.getElementById('modal-left-details')
     modalLeftDetails.innerHTML = `
         <p>${data.data.description}</p>
-        <div class="row column-gap-3 px-3">
+        <div class="row column-gap-3 mx-1 ">
            <div class ="col bg-light-subtle">
            <p>${data.data.pricing[0].price} <br>${data.data.pricing[0].plan}</p>
            </div>
@@ -67,9 +67,9 @@ const displaySingleApiData = (data) => {
            <p>${data.data.pricing[2].price} <br>${data.data.pricing[2].plan}</p>
            </div>
         </div>
-        <div class="row">
+        <div class="row mt-3">
              <div class ="col">
-                 <h3>Features</h3>
+                 <h4>Features</h4>
                  <ul type="radio">
                   <li>${data.data.features[1].feature_name}</li>
                   <li>${data.data.features[2].feature_name}</li>
@@ -77,7 +77,7 @@ const displaySingleApiData = (data) => {
                   </ul>
              </div>
              <div class="col">
-             <h3>Integrations</h3>
+             <h4>Integrations</h4>
                  
             <ul type="radio">
               <li>${data.data.integrations[0]}</li>
@@ -91,7 +91,7 @@ const displaySingleApiData = (data) => {
    `
     const modalRightDetails = document.getElementById('modal-right-details')
     modalRightDetails.innerHTML = `
-   <div class="card" style="width: 18rem;">
+   <div class="card p-3">
            <img src="${data.data.image_link[0]}" class="card-img-top image-fluid" alt="...">
       <div class="card-body">
         <h4>${data.data.input_output_examples[0].input}</h4>
