@@ -42,7 +42,7 @@ const displayApiData = (tools) => {
                 <div class="mt-0 px-3 d-flex align-items-center justify-content-between">
                <div> 
                <h4>${tools.name}</h4>
-               <p>${tools.published_in}</P>
+               <p><i class="fa-solid fa-calendar-days mx-1"></i>${tools.published_in}</P>
                </div>
                <div>
                <button onclick ="apiDetails('${tools.id}')" id="details-btn" class ="bg-warning-subtle text-danger fs-2 px-2 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
@@ -73,14 +73,14 @@ const displaySingleApiData = (data) => {
     const modalLeftDetails = document.getElementById('modal-left-details')
     modalLeftDetails.innerHTML = `
         <p class="fw-bold">${data.data.description}</p>
-        <div class="row column-gap-3 mx-1 align-items-center">
-           <div class ="col bg-light-subtle rounded py-2 text-success fw-semibold">
+        <div class="container row flex-nowrap column-gap-2 lg-mx-1 align-items-center" style ="font-size:14px">
+           <div class ="col bg-light-subtle rounded py-2 text-success fw-semibold" >
            <p>${data.data.pricing[0].price} <br>${data.data.pricing[0].plan}</p>
            </div>
            <div class ="col bg-light-subtle rounded py-2 text-info fw-semibold">
            <p>${data.data.pricing[1].price} <br>${data.data.pricing[1].plan}</p>
            </div>
-           <div class ="col bg-light-subtle rounded text-danger-emphasis fw-semibold">
+           <div class ="col bg-light-subtle rounded  text-danger-emphasis fw-semibold">
            <p>${data.data.pricing[2].price} <br>${data.data.pricing[2].plan}</p>
            </div>
         </div>
@@ -114,7 +114,8 @@ const displaySingleApiData = (data) => {
           <img src="${data.data.image_link[0]}" class="card-img-top image-fluid " alt="...">
          </div>
          <div> 
-         <p class="text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score*100 ? data.data.accuracy.score*100:'no data'}% accuracy</p>
+         <p id ="accuracy" class="d-none text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score*100}% accuracy</p>
+        
          </div>
           
           </div>
