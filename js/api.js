@@ -68,7 +68,7 @@ const displaySingleApiData = (data) => {
         <p class="fw-bold">${data.data.description}</p>
         <div class="container row flex-nowrap column-gap-2 lg-mx-1 align-items-center" style ="font-size:14px">
            <div class ="col bg-light-subtle rounded py-2 text-success fw-semibold" >
-           <p>${data.data.pricing[0].price} <br>${data.data.pricing[0].plan}</p>
+           <p>${data.data.pricing[0].price ?data.data.pricing[0].price :'Free of cost'} <br>${data.data.pricing[0].plan}</p>
            </div>
            <div class ="col bg-light-subtle rounded py-2 text-info fw-semibold">
            <p>${data.data.pricing[1].price} <br>${data.data.pricing[1].plan}</p>
@@ -107,7 +107,7 @@ const displaySingleApiData = (data) => {
           <img src="${data.data.image_link[0]}" class="card-img-top image-fluid " alt="...">
          </div>
          <div> 
-         <p id ="accuracy" class="d-none text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score*100}% accuracy</p>
+         <p id ="accuracy" class="text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score  ?data.data.accuracy.score*100+'% accuracy' :'' }</p>
         
          </div>
           

@@ -13,6 +13,9 @@
 <body>
     <header>
         <h1 class="text-center">All universe here</h1>
+        <div class="bg-danger text-light w-25 mx-auto text-center py-1 rounded mb-3">
+            <h5 class="btn btn-dange text-light fw-bold">Sort by date</h5>
+        </div>
     </header>
     <main>
         <section class="container">
@@ -20,11 +23,12 @@
 
             </div>
             <!-- show all button -->
-            <div id="see-more" class=" text-center mt-3">
+            <div id="see-more" class=" text-center mt-3 ">
                 <div onclick="showAllData(),seeMoreDisplayNone()" id="btn-see-more" class=" btn btn-danger">See More</div>
 
             </div>
         </section>
+        <!-- loader spinner -->
         <section id="loader" class="d-none">
             <div style="height:400px" class="text-center d-flex justify-content-center align-items-center">
                 <div class="spinner-border text-success" role="status">
@@ -42,7 +46,7 @@
                     <div class="modal-content">
                         <div class="modal-header justify-content-end">
                             <button type="button" class=" bg-danger text-light  border-0 rounded-circle"
-                                style=" margin: -39px -29px 0px 0px" data-bs-dismiss="modal"
+                                style=" margin: -17px -17px 0px 0px;" data-bs-dismiss="modal"
                                 aria-label="Close">&#x2715</button>
                         </div>
 
