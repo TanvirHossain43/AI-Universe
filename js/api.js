@@ -2,23 +2,18 @@ const loadApiData = (datalimit) => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayApiData(data.data.tools,datalimit))
+        .then(data => displayApiData(data.data.tools.slice(0,6)))
+     
         toggleSpinner(true)
-
 }
 
+
+
 const displayApiData = (tools) => {
-    // console.log(tools)
-    const dataContainer = document.getElementById('data-container')
    
-    // const btnShowAll =document.getElementById('see-more')
-    // if (tools.length > 6){
-    //     tools = tools.slice(0, 6);
-    //     btnShowAll.classList.remove('d-none')
-    // }
-    // else{
-    //     btnShowAll.classList.add('d-none')
-    // }
+    const dataContainer = document.getElementById('data-container')
+    dataContainer.innerHTML="";
+    
        
 
     tools.forEach(tools => {
@@ -57,9 +52,6 @@ const displayApiData = (tools) => {
     toggleSpinner(false)
 }
 
-    document.getElementById('btn-see-more').addEventListener('click',function(){
-        toggleSpinner(true)
-    })
 
 
 const apiDetails = id => {
@@ -68,6 +60,7 @@ const apiDetails = id => {
         .then(res => res.json())
         .then(data => displaySingleApiData(data))
 }
+
 const displaySingleApiData = (data) => {
     const modalBodyDetails = document.getElementById('modal-body')
     const modalLeftDetails = document.getElementById('modal-left-details')
@@ -127,12 +120,7 @@ const displaySingleApiData = (data) => {
    
    `
 }
-// button see more
-document.getElementById('btn-see-more').addEventListener('click',function(){
-    console.log('click')
-   
-    
-})
+
 
 // loading spinner
 const toggleSpinner = isLoading => {
@@ -145,8 +133,22 @@ const toggleSpinner = isLoading => {
     }
 }
 
+// button see more
+const seeMoreDisplayNone =()=>{
+    document.getElementById('see-more').style.display ='none';
+}
 
 loadApiData()
+
+const showAllData = () =>{
+    const url = `https://openapi.programming-hero.com/api/ai/tools`
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayApiData(data.data.tools))
+}
+
+
+
 
 
 
