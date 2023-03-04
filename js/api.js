@@ -11,14 +11,14 @@ const displayApiData = (tools) => {
     // console.log(tools)
     const dataContainer = document.getElementById('data-container')
    
-    const btnShowAll =document.getElementById('see-more')
-    if (tools.length > 6){
-        tools = tools.slice(0, 6);
-        btnShowAll.classList.remove('d-none')
-    }
-    else{
-        btnShowAll.classList.add('d-none')
-    }
+    // const btnShowAll =document.getElementById('see-more')
+    // if (tools.length > 6){
+    //     tools = tools.slice(0, 6);
+    //     btnShowAll.classList.remove('d-none')
+    // }
+    // else{
+    //     btnShowAll.classList.add('d-none')
+    // }
        
 
     tools.forEach(tools => {
@@ -46,7 +46,6 @@ const displayApiData = (tools) => {
                </div>
                <div>
                <button onclick ="apiDetails('${tools.id}')" id="details-btn" class ="bg-warning-subtle text-danger fs-2 px-2 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
-               ${toggleSpinner(true)}
                </div>
               </div>
             </div>
@@ -57,11 +56,11 @@ const displayApiData = (tools) => {
     });
     toggleSpinner(false)
 }
-const loaderFunction = () =>{
-    document.getElementById('details-btn').addEventListener('click',function(){
+
+    document.getElementById('btn-see-more').addEventListener('click',function(){
         toggleSpinner(true)
     })
-}
+
 
 const apiDetails = id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
@@ -98,9 +97,9 @@ const displaySingleApiData = (data) => {
              <h4>Integrations</h4>
                  
             <ul type="radio" class="text-dark-emphasis" style="font-size:14px">
-              <li>${data.data.integrations[0]}</li>
-              <li>${data.data.integrations[1]}</li>
-              <li>${data.data.integrations[2]}</li>
+              <li>${data.data.integrations[0]?data.data.integrations[0]:'No data found'}</li>
+              <li>${data.data.integrations[1]?data.data.integrations[1]:'No data found'}</li>
+              <li>${data.data.integrations[2]?data.data.integrations[2]:'No data found'}</li>
             </ul>
              
              </div>
@@ -110,10 +109,18 @@ const displaySingleApiData = (data) => {
     const modalRightDetails = document.getElementById('modal-right-details')
     modalRightDetails.innerHTML = `
    <div class="card p-3">
-           <img src="${data.data.image_link[0]}" class="card-img-top image-fluid" alt="...">
+          <div class="d-flex"> 
+         <div>
+          <img src="${data.data.image_link[0]}" class="card-img-top image-fluid " alt="...">
+         </div>
+         <div> 
+         <p class="text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score*100 ? data.data.accuracy.score*100:'no data'}% accuracy</p>
+         </div>
+          
+          </div>
       <div class="card-body">
         <h4>${data.data.input_output_examples[0].input}</h4>
-        <p class="card-text">I'm doing well, thank you for asking. How can I assist you today?</p>
+        <p class="card-text">${data.data.input_output_examples[0].input ? data.data.input_output_examples[0].input:'No! Not Yet!Take a break!!!'}</p>
       </div>
   </div>
    
