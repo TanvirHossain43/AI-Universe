@@ -1,10 +1,12 @@
-const loadApiData = (datalimit) => {
+const loadApiData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
         .then(data => displayApiData(data.data.tools.slice(0,6)))
      
         toggleSpinner(true)
+
+   
 }
 
 
@@ -14,9 +16,14 @@ const displayApiData = (tools) => {
     const dataContainer = document.getElementById('data-container')
     dataContainer.innerHTML="";
     
+       const dateArray2 =[tools.published_in]
        
 
     tools.forEach(tools => {
+        const dateArray =[tools.published_in];
+        // console.log(dateArray)
+       
+
 
         const dataDiv = document.createElement('div')
         dataDiv.classList.add('col')
@@ -26,9 +33,9 @@ const displayApiData = (tools) => {
                 
                 <div class="ps-3 pt-2">
                     <h5 class="card-title">Features</h5>
-                    <p class="card-text">1.${tools.features[0]}</p>
-                    <p class="card-text">2.${tools.features[1]}</p>
-                    <p class="card-text">3.${tools.features[2] ? tools.features[2]:'Data not found'}</p>
+                    <p class="card-text">${tools.features[0] ?'1.'+ tools.features[0]:''}</p>
+                    <p class="card-text">${tools.features[1] ? '2.'+ tools.features[1]:''}</p>
+                    <p class="card-text">${tools.features[2] ?'3.'+ tools.features[2]:''}</p>
                     
                     <hr class="mx-3">
                    
@@ -40,7 +47,7 @@ const displayApiData = (tools) => {
                <p><i class="fa-solid fa-calendar-days mx-1"></i>${tools.published_in}</P>
                </div>
                <div>
-               <button onclick ="apiDetails('${tools.id}')" id="details-btn" class ="bg-warning-subtle text-danger fs-2 px-2 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
+               <button onclick ="apiDetails('${tools.id}')" id="details-btn" class ="bg-danger text-light fs-3 px-3 py-1 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
                </div>
               </div>
             </div>
@@ -146,6 +153,7 @@ const showAllData = () =>{
         .then(res => res.json())
         .then(data => displayApiData(data.data.tools))
 }
+
 
 
 
