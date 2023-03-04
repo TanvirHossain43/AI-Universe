@@ -3,6 +3,7 @@ const loadApiData = (datalimit) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayApiData(data.data.tools,datalimit))
+        toggleSpinner(true)
 
 }
 
@@ -44,7 +45,8 @@ const displayApiData = (tools) => {
                <p>${tools.published_in}</P>
                </div>
                <div>
-               <button onclick ="apiDetails('${tools.id}')"  id="details-btn" class ="bg-warning-subtle text-danger fs-2 px-2 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
+               <button onclick ="apiDetails('${tools.id}')" id="details-btn" class ="bg-warning-subtle text-danger fs-2 px-2 border-0 rounded-circle" type="button" data-bs-toggle="modal" data-bs-target="#apiDetailsModal">&#8594;</button>
+               ${toggleSpinner(true)}
                </div>
               </div>
             </div>
@@ -53,8 +55,13 @@ const displayApiData = (tools) => {
         dataContainer.appendChild(dataDiv)
 
     });
+    toggleSpinner(false)
 }
-
+const loaderFunction = () =>{
+    document.getElementById('details-btn').addEventListener('click',function(){
+        toggleSpinner(true)
+    })
+}
 
 const apiDetails = id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
@@ -118,6 +125,19 @@ document.getElementById('btn-see-more').addEventListener('click',function(){
    
     
 })
+
+// loading spinner
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader')
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
+}
+
+
 loadApiData()
 
 
