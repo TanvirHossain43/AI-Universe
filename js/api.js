@@ -2,28 +2,21 @@ const loadApiData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayApiData(data.data.tools.slice(0,6)))
-     
-        toggleSpinner(true)
+        .then(data => displayApiData(data.data.tools.slice(0, 6)))
 
-   
+    toggleSpinner(true)
+
+
 }
 
 
 
 const displayApiData = (tools) => {
-   
+
     const dataContainer = document.getElementById('data-container')
-    dataContainer.innerHTML="";
-    
-       const dateArray2 =[tools.published_in]
-       
+    dataContainer.innerHTML = "";
 
     tools.forEach(tools => {
-        const dateArray =[tools.published_in];
-        // console.log(dateArray)
-       
-
 
         const dataDiv = document.createElement('div')
         dataDiv.classList.add('col')
@@ -33,9 +26,9 @@ const displayApiData = (tools) => {
                 
                 <div class="ps-3 pt-2">
                     <h5 class="card-title">Features</h5>
-                    <p class="card-text">${tools.features[0] ?'1.'+ tools.features[0]:''}</p>
-                    <p class="card-text">${tools.features[1] ? '2.'+ tools.features[1]:''}</p>
-                    <p class="card-text">${tools.features[2] ?'3.'+ tools.features[2]:''}</p>
+                    <p class="card-text">${tools.features[0] ? '1.' + tools.features[0] : ''}</p>
+                    <p class="card-text">${tools.features[1] ? '2.' + tools.features[1] : ''}</p>
+                    <p class="card-text">${tools.features[2] ? '3.' + tools.features[2] : ''}</p>
                     
                     <hr class="mx-3">
                    
@@ -75,7 +68,7 @@ const displaySingleApiData = (data) => {
         <p class="fw-bold">${data.data.description}</p>
         <div class="container row flex-nowrap column-gap-2 lg-mx-1 align-items-center" style ="font-size:14px">
            <div class ="col bg-light-subtle rounded py-2 text-success fw-semibold" >
-           <p>${data.data.pricing[0].price ?data.data.pricing[0].price :'Free of cost'} <br>${data.data.pricing[0].plan}</p>
+           <p>${data.data.pricing[0].price ? data.data.pricing[0].price : 'Free of cost'} <br>${data.data.pricing[0].plan}</p>
            </div>
            <div class ="col bg-light-subtle rounded py-2 text-info fw-semibold">
            <p>${data.data.pricing[1].price} <br>${data.data.pricing[1].plan}</p>
@@ -97,9 +90,9 @@ const displaySingleApiData = (data) => {
              <h4>Integrations</h4>
                  
             <ul type="radio" class="text-dark-emphasis" style="font-size:14px">
-              <li>${data.data.integrations[0]?data.data.integrations[0]:'No data found'}</li>
-              <li>${data.data.integrations[1]?data.data.integrations[1]:'No data found'}</li>
-              <li>${data.data.integrations[2]?data.data.integrations[2]:'No data found'}</li>
+              <li>${data.data.integrations[0] ? data.data.integrations[0] : 'No data found'}</li>
+              <li>${data.data.integrations[1] ? data.data.integrations[1] : 'No data found'}</li>
+              <li>${data.data.integrations[2] ? data.data.integrations[2] : 'No data found'}</li>
             </ul>
              
              </div>
@@ -114,14 +107,14 @@ const displaySingleApiData = (data) => {
           <img src="${data.data.image_link[0]}" class="card-img-top image-fluid " alt="...">
          </div>
          <div> 
-         <p id ="accuracy" class="text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score  ?data.data.accuracy.score*100+'% accuracy' :'' }</p>
+         <p id ="accuracy" class="text-white bg-danger text-center rounded" style="font-size:14px; margin: 4px 6px 0px -135px;">${data.data.accuracy.score ? data.data.accuracy.score * 100 + '% accuracy' : ''}</p>
         
          </div>
           
           </div>
       <div class="card-body">
         <h4>${data.data.input_output_examples[0].input}</h4>
-        <p class="card-text">${data.data.input_output_examples[0].input ? data.data.input_output_examples[0].input:'No! Not Yet!Take a break!!!'}</p>
+        <p class="card-text">${data.data.input_output_examples[0].input ? data.data.input_output_examples[0].input : 'No! Not Yet!Take a break!!!'}</p>
       </div>
   </div>
    
@@ -141,13 +134,13 @@ const toggleSpinner = isLoading => {
 }
 
 // button see more
-const seeMoreDisplayNone =()=>{
-    document.getElementById('see-more').style.display ='none';
+const seeMoreDisplayNone = () => {
+    document.getElementById('see-more').style.display = 'none';
 }
 
 loadApiData()
 
-const showAllData = () =>{
+const showAllData = () => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
