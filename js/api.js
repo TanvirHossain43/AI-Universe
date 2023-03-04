@@ -1,14 +1,24 @@
-const loadApiData = () => {
+const loadApiData = (datalimit) => {
     const url = `https://openapi.programming-hero.com/api/ai/tools`
     fetch(url)
         .then(res => res.json())
-        .then(data => displayApiData(data.data.tools))
+        .then(data => displayApiData(data.data.tools,datalimit))
 
 }
 
 const displayApiData = (tools) => {
-    // console.log(data.tools[0].image)
+    // console.log(tools)
     const dataContainer = document.getElementById('data-container')
+   
+    const btnShowAll =document.getElementById('see-more')
+    if (tools.length > 6){
+        tools = tools.slice(0, 6);
+        btnShowAll.classList.remove('d-none')
+    }
+    else{
+        btnShowAll.classList.add('d-none')
+    }
+       
 
     tools.forEach(tools => {
 
@@ -22,7 +32,7 @@ const displayApiData = (tools) => {
                     <h5 class="card-title">Features</h5>
                     <p class="card-text">1.${tools.features[0]}</p>
                     <p class="card-text">2.${tools.features[1]}</p>
-                    <p class="card-text">3.${tools.features[2]}</p>
+                    <p class="card-text">3.${tools.features[2] ? tools.features[2]:'Data not found'}</p>
                     
                     <hr class="mx-3">
                    
@@ -45,6 +55,7 @@ const displayApiData = (tools) => {
     });
 }
 
+
 const apiDetails = id => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
     fetch(url)
@@ -55,23 +66,23 @@ const displaySingleApiData = (data) => {
     const modalBodyDetails = document.getElementById('modal-body')
     const modalLeftDetails = document.getElementById('modal-left-details')
     modalLeftDetails.innerHTML = `
-        <p>${data.data.description}</p>
-        <div class="row column-gap-3 mx-1 ">
-           <div class ="col bg-light-subtle">
+        <p class="fw-bold">${data.data.description}</p>
+        <div class="row column-gap-3 mx-1 align-items-center">
+           <div class ="col bg-light-subtle rounded py-2 text-success fw-semibold">
            <p>${data.data.pricing[0].price} <br>${data.data.pricing[0].plan}</p>
            </div>
-           <div class ="col bg-light-subtle">
+           <div class ="col bg-light-subtle rounded py-2 text-info fw-semibold">
            <p>${data.data.pricing[1].price} <br>${data.data.pricing[1].plan}</p>
            </div>
-           <div class ="col bg-light-subtle">
+           <div class ="col bg-light-subtle rounded text-danger-emphasis fw-semibold">
            <p>${data.data.pricing[2].price} <br>${data.data.pricing[2].plan}</p>
            </div>
         </div>
         <div class="row mt-3">
              <div class ="col">
                  <h4>Features</h4>
-                 <ul type="radio">
-                  <li>${data.data.features[1].feature_name}</li>
+                 <ul type="radio" class="text-dark-emphasis" style="font-size:14px" >
+                  <li >${data.data.features[1].feature_name}</li>
                   <li>${data.data.features[2].feature_name}</li>
                   <li>${data.data.features[3].feature_name}</li>
                   </ul>
@@ -79,7 +90,7 @@ const displaySingleApiData = (data) => {
              <div class="col">
              <h4>Integrations</h4>
                  
-            <ul type="radio">
+            <ul type="radio" class="text-dark-emphasis" style="font-size:14px">
               <li>${data.data.integrations[0]}</li>
               <li>${data.data.integrations[1]}</li>
               <li>${data.data.integrations[2]}</li>
@@ -101,6 +112,14 @@ const displaySingleApiData = (data) => {
    
    `
 }
-
+// button see more
+document.getElementById('btn-see-more').addEventListener('click',function(){
+    console.log('click')
+   
+    
+})
 loadApiData()
+
+
+
 

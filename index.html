@@ -18,21 +18,32 @@
             <div id="data-container" class="row row-cols-1 row-cols-md-3 g-4">
 
             </div>
+            <!-- show all button -->
+            <div id="see-more" class="d-none text-center">
+                <div id="btn-see-more" class="btn btn-primary">Show All</div>
+
+            </div>
         </section>
 
 
         <!-- Modal -->
-        <div  class="modal fade " id="apiDetailsModal" tabindex="-1" aria-labelledby="apiDetailsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg"  >
-                <div class="modal-content">
-                    <div class="modal-header justify-content-end">
-                        <button type="button" class=" bg-danger text-light  border-0 rounded-circle" style=" margin: -39px -29px 0px 0px" data-bs-dismiss="modal" aria-label="Close">&#x2715</button>
+        <div class="container">
+            <div class="modal fade " id="apiDetailsModal" tabindex="-1" aria-labelledby="apiDetailsModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header justify-content-end">
+                            <button type="button" class=" bg-danger text-light  border-0 rounded-circle"
+                                style=" margin: -39px -29px 0px 0px" data-bs-dismiss="modal"
+                                aria-label="Close">&#x2715</button>
+                        </div>
+                        <div id="modal-body" class="modal-body d-flex row ">
+                            <div id="modal-left-details"
+                                class=" col bg-warning-subtle border border-danger p-3 rounded"></div>
+                            <div id="modal-right-details" class="col"></div>
+                        </div>
+
                     </div>
-                    <div id="modal-body" class="modal-body d-flex row ">
-                        <div id="modal-left-details" class=" col bg-warning-subtle border border-danger p-3 rounded"></div>
-                        <div id="modal-right-details" class="col"></div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
